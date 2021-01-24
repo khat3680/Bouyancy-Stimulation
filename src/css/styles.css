@@ -1,0 +1,158 @@
+
+
+.tank {
+    /* size */
+    width: 330px;
+    height: 150px;
+    top: 390px;
+    left: 300px;
+    /* colors */
+    border-bottom: 15px solid gold;
+    border-left: 15px solid gold;
+    border-right: 15px solid gold;
+    border-top: 2px solid gold ;
+
+    background: white;
+    
+    position: relative; /* to allow positioning the water at bottom */
+
+    display: inline-block; /* so the div doesn't wrap */
+    margin: 0px; /* space between divs */
+
+}
+
+.tank .water {
+    position: absolute;
+    
+    /* color of water */ 
+    background: rgb(111, 212, 240);
+
+    /* water position */
+    width: 100%;
+    bottom: 0;
+}
+
+#currlevel {
+
+    position: absolute;
+    
+    /* color of water */ 
+    background: rgb(111, 212, 240);
+
+    /* water position */
+    width: 100%;
+    bottom: 0;
+}
+
+.box2 {
+    
+    position: absolute;
+    left: 100px;
+    width: 80px;
+    height: 80px;
+
+    border: 1px solid black;
+    background: rgb(170, 213, 232);
+
+    bottom: 0;
+
+}
+
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-10px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+}
+
+
+.weightmachine1 {
+   
+    position: absolute;
+    
+    left: 900px;
+    top: 200px;
+
+    width: 100px;
+    height: 50px;
+
+    border: 5px solid ;
+    background: white;
+
+
+}
+
+
+.weightmachine2 {
+   
+    position: absolute;
+    top: 400px;
+    left: 850px;
+
+
+    width: 100px;
+    height: 50px;
+
+    border: 5px solid ;
+    background: white;
+
+
+}
+
+
+.slab {
+    position: absolute;
+    top: 540px;
+    left: 0px;
+
+    background: red;
+
+    width: 1080px;
+    height: 25px;
+     overflow: hidden;
+}
+
+.box {
+
+    position: absolute;
+    
+    left: 200px;
+    width: 80px;
+    height: 80px;
+
+    border: 1px solid black;
+    background: rgb(244, 167, 2);
+    
+    bottom: 0;
+
+}
+
+
+.arrow_ini {
+
+    position: absolute;
+    top: 420px;
+    left: 695px;
+    color: rgb(0, 0, 255);
+ 
+}
+
+
+.arrow_var {
+
+    position: absolute;
+    
+    left: 695px;
+
+    color: rgb(242, 81, 81);
+
+}
+

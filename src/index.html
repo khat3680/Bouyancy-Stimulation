@@ -1,0 +1,356 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/src/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/src/css/styles.css">
+    <link rel="stylesheet" href="/src/css/scale.css">
+
+
+    <script src="/src/jvasct/reset.js"></script>
+    <script src="jvasct/dragging.js"></script>
+    <script src="jvasct/inputcomponent.js"></script>
+
+
+    <title>Bouyancy</title>
+</head>
+
+<body>
+    <!-- Heading -->
+    <div class="text-white bg-danger ">
+        <h2>Bouyancy Modelling
+        </h2>
+    </div>
+
+
+    <!--Controls Area-->
+    <div class="container-fluid bg-white" role="toolbar" aria-label="Toolbar with button groups" style="height: 50px;">
+
+        <div class="row">
+
+            <div class="col">
+                <label for="Block">Box ρ</label>
+                <input type="number" placeholder="Block Density" oninput="tbox('Block', 'denblock'); updatevars();"
+                    onchange="updatevars();" id="Block">
+                <button type="button" id="resetBD" onclick="resetbuton('Block','denblock'); updatevars();"
+                    class="btn btn-primary btn-sm ml-2">reset</button>
+
+            </div>
+
+            <div class="col">
+                <label for="Fluid">Fluid ρ</label>
+                <input type="number" placeholder="Fluid Density" oninput="tbox('Fluid', 'denfluid'); updatevars();"
+                    onchange=" updatevars(); " id="Fluid">
+                <button type="button" id="resetFD" onclick=" resetbuton('Fluid', 'denfluid'); updatevars(); "
+                    class="btn btn-primary btn-sm ml-2">reset</button>
+            </div>
+
+            <div class="col">
+                <label for="height">Fluid Height</label>
+                <input type="number" placeholder="Fluid Height" oninput="tbox('height', 'fluidheight'); updatevars();"
+                    onchange="waterlevel(value); updatevars();" id="height">
+                <button type="button" id="resetFH"
+                    onclick="resetbuton('height', 'fluidheight'); waterlevel(50); updatevars();"
+                    class="btn btn-primary btn-sm ml-2">reset</button>
+            </div>
+
+
+            <div class="col">
+                <label for="Depth">Box Depth</label>
+                <input onselect="alert('this is it');" type="number" placeholder="Block Depth"
+                    oninput="tbox('Depth', 'boxdepth'); updatevars();" onchange="depthbox(value); updatevars();"
+                    id="Depth">
+                <button type="button" id="resetBoxD"
+                    onclick="resetbuton('Depth', 'boxdepth'); depthbox(value); updatevars()"
+                    class="btn btn-primary btn-sm ml-2">reset</button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- Stimulation Area  style="background-color: rgb(246, 162, 162);"-->
+    <div>
+        <div class="container-fluid">
+            <div style="height: 700px;">
+                <div class="row">
+
+                    <div class="col-9 " id="stiarea">
+                        <div class="tank " ondrop="drop(event);" ondragover="allowDrop(event)">
+                            <div ondrop="drop(event);" ondragover="allowDrop(event);" id="currlevel"
+                                style="height: 50pt;"></div>
+                        </div>
+
+                        <div class="weightmachine1" draggable="true" id='weightmachine'
+                            ondrag="dragging('weightmachine','stiarea');">
+                            <h2 class="text-danger text-center" id="blockwegihtonmachine">435</h2>
+                            <p>F<sub>net(block)</sub></p>
+                        </div>
+
+                        <div class="slab"></div>
+
+                        <div class="box" style="top: 460px;" draggable=true id="box"
+                            ondragstart="drag(event)" >
+                        </div>
+                        <br>
+                        <div class="box2" style="top: 460px;" draggable=true id="box2" ondragstart="drag(event); "></div>
+
+                        <div class="row">
+                            <div class='ruler'>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                    <div class='mm'></div>
+                                </div>
+                                <div class='cm'></div>
+                            </div>
+                        </div>
+                        <div class="fa fa-long-arrow-left fa-4x arrow_ini "></div>
+                        <div class="fa fa-long-arrow-left fa-4x arrow_var" style="top: 315pt;"></div>
+                    </div>
+
+
+                    <div class="col-3 "
+                        style="height: 700px; border: 3px solid black; background-color: rgba(37, 229, 223, 0.767);">
+
+                        <h2 class="text-danger ">Observations:-</h2>
+
+                        <p>Initail Height of Fluid (m):
+                            <label id="inifluid"></label>0.5</p>
+                        <p>Height of Fluid (m): <label id="fluidheight">0.5</label></p>
+                        <p>Density of Block (kg/m<sup>3</sup>): <label id="denblock">0.5</label></p>
+                        <p>Density of Fluid (kg/m<sup>3</sup>): <label id="denfluid">0.5</label></p>
+                        <p>Depth of Box (m): <label id="boxdepth">0.5</label></p>
+
+                        <p>V<sub>block</sub> (m<sup>3</sup>) = m / &#961; <sub>block</sub> =
+                            <label id="volumeLabel">0.6</label></p>
+                        <p>F<sub>buyonant</sub> (N) = &#961; <sub>fluid</sub> * g * V<sub>block</sub>=
+                            <label id="forceLabel"> 0 </label></p>
+                        <p>Weight (N)= <label id="gravityLabel"> 0 </label></p>
+                        <p>F<sub>net</sub> (N)= <label id="netforce"> 0</label> </p>
+                        <h4 class="text-danger">Note:-</h4>
+                        <p>Mass of Wood block (Kg): <label>3</label></p>
+                        <p>Gravity (g) = 9.8 m/s <sup>2</sup> </p>
+
+                        <p id="conditionLabel"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function updatevars() {
+
+            console.log("called ");
+
+            var inih; var hfluid; var denblock;
+            var denfluid; var boxdepth; var volblock; var fbuyonant;
+            var gravity; var blockmass; var netforce;
+
+            blockmass = 3;
+            inih = document.getElementById('inifluid').innerHTML;
+            denblock = document.getElementById('denblock').innerHTML;
+            denfluid = document.getElementById('denfluid').innerHTML;
+
+            boxdepth = document.getElementById('boxdepth').innerHTML;
+
+            volblock = blockmass / (denblock);
+            document.getElementById('volumeLabel').innerHTML = volblock;
+
+            fbuyonant = (denfluid) * (9.8) * (volblock);
+            fbuyonant = fbuyonant.toFixed(2);
+
+            document.getElementById('forceLabel').innerHTML = fbuyonant;
+
+            gravity = (blockmass) * (9.8);
+            gravity = gravity.toFixed(2);
+            document.getElementById('gravityLabel').innerHTML = gravity;
+
+            netforce = gravity - fbuyonant;
+            netforce = netforce.toFixed(2);
+            document.getElementById('netforce').innerHTML = netforce;
+
+
+            document.getElementById('blockwegihtonmachine').innerHTML = netforce;
+
+
+        }
+
+        updatevars();
+
+        function conditionstatement() {
+
+            var vars = {
+                buyonantForce, volume, gravity
+            }
+
+            vars.buyonantForce = document.getElementById('forceLabel').innerHTML;
+            vars.volume = document.getElementById('volumeLabel').innerHTML;
+            vars.gravity = document.getElementById('gravityLabel').innerHTML;
+
+
+            if (vars.gravity > 0) {
+                if (vars.buyonantForce > vars.gravity)
+                    document.getElementById('conditionLabel').innerHTML = "The body is emerging";
+                if (vars.buyonantForce < vars.gravity)
+                    document.getElementById('conditionLabel').innerHTML = "The body is sinking";
+                if (vars.buyonantForce == vars.gravity)
+                    document.getElementById('conditionLabel').innerHTML = "The body is floating";
+            }
+            else {
+                document.getElementById('conditionLabel').innerHTML = "";
+            }
+        }
+
+        function allowDrop(ev) {
+            console.log(" on top of mee ");
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            console.log('under control');
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            console.log('dropped');
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+
+            if (document.getElementById(data).id == "box2") {
+            document.getElementById(data).style["top"] = 5 + 'px';
+            document.getElementById(data).style.animation = 'float 3s ease-in-out infinite';
+            waterlevel(60);
+            }
+            else {
+                document.getElementById(data).style["left"] = 100 + 'px';
+                document.getElementById(data).style["top"] = 50 + 'px';
+                document.getElementById(data).style.animation = 'float 3s ease-in-out infinite';
+                waterlevel(40);
+            }
+
+           
+
+        }
+
+    </script>
+</body>
+
+</html>
